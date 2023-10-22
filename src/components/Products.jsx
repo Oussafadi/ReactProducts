@@ -1,27 +1,47 @@
 import { faCheckCircle, faCircle, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, { useState } from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import { checkProduct, deleteProduct, getProducts } from '../app/functions'
 
 export default function Products() {
-   const [products,setProducts] =useState([  
-        { id:1 , name: "Computer" , price:5000 , checked:false } ,
-        { id:2 , name: "Tablet" , price:5000 , checked:false } ,
-        { id:3 , name: "Phone" , price:5000 , checked:true } ,
+   const [products,setProducts] =useState([ 
     ])
 
+    useEffect(() => {
+         handleGetProducts();
+    }, [])
+
+    const handleGetProducts = () => {
+       getProducts().then(res => {
+        setProducts(res.data);
+       }
+       ).catch(err => {
+        console.log(err);
+       })
+    }
+
     const handleDelete = (p) => {
-           const newProducts = products.filter(product => product.id != p.id);
-           setProducts(newProducts);
+           deleteProduct(p).then(res => {
+            const newProducts = products.filter((product) => product.id!= p.id);
+            setProducts(newProducts);
+           })
+           
     };
 
     const handleCheck = (p) => {
-          const newProducts = products.map(product=> {
-            if(product.id == p.id) {
-                product.checked=!product.checked ;
-            }
-            return product ;
-          })
-          setProducts(newProducts);
+          checkProduct(p).then(res => {
+            const newProducts = products.map(product=> {
+                if(product.id == p.id) {
+                    product.checked=!product.checked ;
+                }
+                return product ;
+              })
+              setProducts(newProducts);
+          }).catch(err => {
+            console.log(err);
+           })
+         
     };
 
   return (

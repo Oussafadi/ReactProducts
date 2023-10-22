@@ -1,4 +1,4 @@
-import { faCheckCircle, faCircle } from '@fortawesome/free-solid-svg-icons'
+import { faCheckCircle, faCircle, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState } from 'react'
 
@@ -8,6 +8,21 @@ export default function Products() {
         { id:2 , name: "Tablet" , price:5000 , checked:false } ,
         { id:3 , name: "Phone" , price:5000 , checked:true } ,
     ])
+
+    const handleDelete = (p) => {
+           const newProducts = products.filter(product => product.id != p.id);
+           setProducts(newProducts);
+    };
+
+    const handleCheck = (p) => {
+          const newProducts = products.map(product=> {
+            if(product.id == p.id) {
+                product.checked=!product.checked ;
+            }
+            return product ;
+          })
+          setProducts(newProducts);
+    };
 
   return (
     <>
@@ -19,7 +34,8 @@ export default function Products() {
                     <th className="px-4 py-4 border-2 rounded-md border-indigo-300">Product ID</th>
                     <th className="px-4 py-4 border-2  rounded-md border-indigo-300"> Name</th>
                     <th className="px-4 py-4 border-2 rounded-md border-indigo-300"> Price </th>
-                    <th className="px-4 py-4 border-2 rounded-md border-indigo-300"> Action</th>
+                    <th  className="px-4 py-4 border-2 rounded-md border-indigo-300"> Checked</th>
+                    <th  className="px-4 py-4 border-2 rounded-md border-indigo-300"> Actions </th>
                 </tr>
             </thead>
             <tbody>
@@ -29,11 +45,16 @@ export default function Products() {
                         <td className=" text-center  px-4 py-4">{p.name}</td>
                         <td className=" text-center  px-4 py-4">{p.price}</td>
                         <td className=" text-center  px-4 py-4">
-                            <button className=" bg-white rounded-lg border-2 border-green-600 text-green-600 text-xl px-2 py-1">
+                            <button onClick={() => handleCheck(p)} className=" bg-white rounded-lg border-2 border-green-600 text-green-600 text-xl px-2 py-1">
                               <FontAwesomeIcon icon={  p.checked ? faCheckCircle : faCircle }></FontAwesomeIcon>
                             </button>
-                           
+                            
                         </td>
+                        <td className=" text-center  px-4 py-4">
+                        <button onClick={() => handleDelete(p)} className=" bg-white rounded-lg border-2 border-red-600 text-red-600 text-xl px-2 py-1">
+                              <FontAwesomeIcon icon={faTrash}></FontAwesomeIcon>
+                            </button>
+                       </td>
                      </tr>
              ))
              }

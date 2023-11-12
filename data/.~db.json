@@ -29,6 +29,12 @@
       "price": "100",
       "checked": false,
       "id": 5
+    },
+    {
+      "name": "kit",
+      "price": "50",
+      "checked": "false",
+      "id": 6
     }
   ]
 }

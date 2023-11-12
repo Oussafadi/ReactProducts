@@ -5,8 +5,8 @@ import axios from "axios";
         baseURL : "http://localhost:9000"
     }
 );
-  export const getProducts = () => {
-    return productsApi.get("/products");
+  export const getProducts = (keyword="",page=1,size=3) => {
+    return productsApi.get(`/products?name_like=${keyword}&_page=${page}&_limit=${size}`);
 }
 
   export const deleteProduct = (product) => {

@@ -3,6 +3,7 @@ import Home from "./Home"
 import Products from "./Products"
 import AddProduct from "./AddProduct"
 import { useEffect, useState } from "react"
+import EditProduct from "./EditProduct"
 
 
 function Navbar() {
@@ -39,6 +40,7 @@ function Navbar() {
         <Route path="/Home" element={<Home/>}>  </Route>
         <Route path="/Products" element={<Products/>}>  </Route>
          <Route path="/AddProduct" element={<AddProduct/>}>  </Route>
+         <Route path="/EditProduct/:id" element={<EditProduct/>}>  </Route> 
     </Routes>
    </BrowserRouter>
     </>

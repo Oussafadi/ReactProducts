@@ -13,9 +13,10 @@ import axios from "axios";
     return productsApi.delete(`/products/${product.id}`);
 }
 
- export const getProduct = (product) => {
-    return productsApi.get(`/products/${product.id}`);
+ export const getProduct = (id) => {
+    return productsApi.get(`/products/${id}`);
 }
+
 
  export const saveProduct = (product) => {
     return productsApi.post('/products',product);

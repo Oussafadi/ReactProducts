@@ -1,5 +1,7 @@
 import axios from "axios";
+import { createContext , useState } from "react";
 
+ 
  export const productsApi=axios.create(
     {
         baseURL : "http://localhost:9000"
@@ -29,3 +31,5 @@ import axios from "axios";
  export const updateProduct = (product) => {
     return productsApi.put(`/products/${product.id}`,product);
 }
+
+

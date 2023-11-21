@@ -4,6 +4,7 @@ import Products from "./Products"
 import AddProduct from "./AddProduct"
 import { useEffect, useState } from "react"
 import EditProduct from "./EditProduct"
+import Cart from "./Cart"
 
 
 function Navbar() {
@@ -24,16 +25,16 @@ function Navbar() {
              <div className="flex flex-shrink-0 items-center">
                  <img className="h-8 w-auto" src="vite.svg" alt="Your Company"/>
             </div>
-          <div className="hidden sm:ml-6 sm:block">
-            <div className="flex space-x-4">
+           <div className="hidden sm:ml-6 sm:block">
+              <div className="flex space-x-4">
              <Link onClick={()=>setActiveRoute("Home")} to="/Home" className= {activeRoute=="Home" ? " text-white  bg-indigo-500 rounded-md px-3 py-2 text-sm font-medium" : " text-black hover:bg-indigo-500 rounded-md px-3 py-2 text-sm font-medium" }>Home</Link>
              <Link onClick={()=>setActiveRoute("Products")} to="/Products" className={activeRoute=="Products" ? " text-white  bg-indigo-500 rounded-md px-3 py-2 text-sm font-medium" : " text-black hover:bg-indigo-500 rounded-md px-3 py-2 text-sm font-medium" }>Products</Link>
-             <Link onClick={()=>setActiveRoute("AddProduct")} to="/AddProduct" className={activeRoute=="AddProduct" ? " text-white  bg-indigo-500 rounded-md px-3 py-2 text-sm font-medium" : " text-black hover:bg-indigo-500 rounded-md px-3 py-2 text-sm font-medium" }>Add Product</Link>
-    
-             </div>
-          </div>
+             <Link onClick={()=>setActiveRoute("AddProduct")} to="/AddProduct" className={activeRoute=="AddProduct" ? " text-white  bg-indigo-500 rounded-md px-3 py-2 text-sm font-medium" : " text-black hover:bg-indigo-500 rounded-md px-3 py-2 text-sm font-medium" }>Add Product</Link>        
+              </div>
+           </div>
          </div>
-        </div>
+        <div className="cursor-pointer" > <Cart></Cart> </div>
+      </div>
       </div>
     </nav>
      <Routes>

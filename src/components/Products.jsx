@@ -1,18 +1,20 @@
 import { faCheckCircle, faCircle, faTrash,faSearch,faEdit } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState , useContext } from 'react'
 import { checkProduct, deleteProduct, getProducts } from '../app/functions'
 import { useNavigate } from 'react-router-dom'
+import { Context } from '../app/AppContext'
 
 export default function Products() {
-   const [products,setProducts] =useState({
+  const [products,setProducts] = useContext(Context);
+  /* const [products,setProducts] =useState({
     elements:[],
     currentPage:1,
     pageSize:3,
     keyword:"",
     totalPages:0,
-   });
+   });*/
 
    const [query,setQuery] = useState("");
    const navigate = useNavigate();

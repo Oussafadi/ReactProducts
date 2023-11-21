@@ -5,6 +5,7 @@ import React, { useEffect, useState , useContext } from 'react'
 import { checkProduct, deleteProduct, getProducts } from '../app/functions'
 import { useNavigate } from 'react-router-dom'
 import { Context } from '../app/AppContext'
+import SearchBar from './SearchBar'
 
 export default function Products() {
   const [products,setProducts] = useContext(Context);
@@ -16,7 +17,7 @@ export default function Products() {
     totalPages:0,
    });*/
 
-   const [query,setQuery] = useState("");
+  
    const navigate = useNavigate();
 
     useEffect(() => {
@@ -63,26 +64,13 @@ export default function Products() {
         handleGetProducts(products.keyword,p,products.pageSize);
     };
 
-    const handleSearch = (e) => {
-      e.preventDefault();
-     // setProducts({...products,keyword:query});
-      handleGetProducts(query,1,products.pageSize);
-    };
+   
 
     
   return (
     <>
         <div className=" font-bold px-6 py-4 shadow-lg rounded-md border-2 border-indigo-300 m-5 text-3xl text "> Products </div>
-        <div className='mt-4 mb-4'>
-         <form onSubmit={handleSearch}>
-          <div className='flex justify-center '>
-          <input onChange={(e)=> setQuery(e.target.value)} className='py-1 mr-1 px-1 border text-center rounded-md border-black' value={query} id='query' type='text' placeholder='Search ...' />
-          <button className='text-white cursor-pointer py-1 px-3  bg-indigo-500 text-lg font-semibold border border-black rounded-full' >
-          <FontAwesomeIcon icon={faSearch}></FontAwesomeIcon>
-          </button>
-          </div>    
-         </form>
-        </div>
+        <SearchBar handleGetProducts={handleGetProducts}/>
      <div className="flex align-center justify-center">
         <table className="table-auto shadow-lg border rounded-md">
             <thead>

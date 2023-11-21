@@ -33,7 +33,7 @@ function Navbar() {
               </div>
            </div>
          </div>
-        <div className="cursor-pointer" > <Cart></Cart> </div>
+        <div className="cursor-pointer" > <Cart/> </div>
       </div>
       </div>
     </nav>
